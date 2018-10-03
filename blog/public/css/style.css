@@ -1,0 +1,23 @@
+#banner-div{
+	background-image: url('../images/banner.jpg');
+}
+
+#pointing-menu{
+	border:none;
+}
+#goolge_map{
+	background-image: url('../images/location.jpg');
+}
+div.tile{
+	background-color: #001476;
+	opacity: 0.5;
+	border-radius: 12px;
+	height: 130px;
+	widows: 130px;
+	text-align: center;
+}
+div.tile i {
+    color: white;
+    margin-top: 45px;
+	font-size: 40px;
+}
