@@ -19,7 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/semantic.min.css') }}" rel="stylesheet">
     <!-- custom style  -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <!-- Icons -->

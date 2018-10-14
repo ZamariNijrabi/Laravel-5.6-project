@@ -8,13 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{asset('/css/app.css')}}" rel="stylesheet" type ="text/css">
     <title>@yield('title')</title>
-    @yield('page-level-css')    
-    @if(env('APP_THEM')== 'white'){}
-        <link href="{{asset('/css/white.css')}}" rel="stylesheet" type ="text/css">
-
-    @else
-        <link href="{{asset('/css/black.css')}}" rel="stylesheet" type ="text/css">
-    @endif
+    @yield('page-level-css')  
     
     </head>
     <body>

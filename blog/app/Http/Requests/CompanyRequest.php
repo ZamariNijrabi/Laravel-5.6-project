@@ -13,7 +13,7 @@ class CompanyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class CompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'             => 'required|min:3|max:50',
+            'address'          => 'required|max:255',
+            'phone'            => 'required|regex:/[07]{2}\d{8}/|min:10|max:10',
+            'email'            => 'required|email',
+            'license_number'   => 'required|min:6',
+            'established_date' => 'required'
         ];
     }
 }

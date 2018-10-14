@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\CompanyCategory;
 use App\Models\Province;
 use Illuminate\Http\Request;
+use App\Mail\CompanyAtivation;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -42,9 +43,12 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
         //
+        // Company::create($this->mapRequestData($request));
+        // Mail::to(Auth::user())->send new CompanyAtivation());
+        // return back();
     }
 
     /**
@@ -66,7 +70,10 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        $companies = Company::find($company->id);
+        $categories = CompanyCategory::all();
+        $provinces = Province::all();
+        return view('company.edit',compact('companies','categories','provinces'));
     }
 
     /**
@@ -78,7 +85,9 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+         $company = Company::find($company->id);
+         $company->update($this->mapRequestData($request));
+         return back(); 
     }
 
     /**
@@ -87,8 +96,23 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy($id)
     {
-        //
+            $company = Company::find($id);
+            $company->delete();
+            return back();
     }
+    private function mapRequestData($request){
+        return [
+            'name'                => $request->name,
+            'license_number'      => $request->license_number,
+            'address'             => $request->address,
+            'user_id'             => Auth::user()->id,
+            'established_date'    => $request->established_date,
+            'phone'               => $request->phone,
+            'email'               => $request->email,
+            'province_id'         => $request->province_id,
+            'company_category_id' => $request->company_category_id
+        ];
+    }   
 }
